@@ -30,5 +30,16 @@ class TestLogin(unittest.TestCase):
             ahorcado.login('Agustin Etcheverry')
         self.assertTrue('El nombre no puede tener caracteres especiales o espacios' in str(context.exception))
 
+class TestJuego(unittest.TestCase):
+    def test_arriesgo_letra(self):
+        ahorcado = Ahorcado()
+        self.assertTrue(ahorcado.prueba_letra('a'))
+
+    def test_letra_repetida(self):
+        ahorcado = Ahorcado()
+        ahorcado.agregar_letra('a')
+        self.assertFalse(ahorcado.validar_letra_repetida('a'))
+
+
 if __name__ == '__main__':
     unittest.main()

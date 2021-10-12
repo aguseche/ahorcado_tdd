@@ -8,3 +8,5 @@ def validaciones_nombre(name:str):
         raise Exception('El nombre debe tener mas de 2 caracteres')
     if not name.isalnum():
         raise Exception('El nombre no puede tener caracteres especiales o espacios')
+
+

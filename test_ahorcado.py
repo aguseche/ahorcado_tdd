@@ -39,6 +39,11 @@ class TestJuego(unittest.TestCase):
         ahorcado = Ahorcado()
         ahorcado.agregar_letra('a')
         self.assertFalse(ahorcado.validar_letra_repetida('a'))
+        
+    def test_letra(self):
+        ahorcado = Ahorcado()
+        ahorcado.agregar_letra('a')
+        self.assertFalse(ahorcado.validar_letra_repetida('a'))
 
 
 if __name__ == '__main__':

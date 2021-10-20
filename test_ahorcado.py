@@ -39,11 +39,22 @@ class TestJuego(unittest.TestCase):
         ahorcado = Ahorcado()
         ahorcado.agregar_letra('a')
         self.assertFalse(ahorcado.validar_letra_repetida('a'))
-        
-    def test_letra(self):
+
+    def test_probar_vidas(self):
         ahorcado = Ahorcado()
-        ahorcado.agregar_letra('a')
-        self.assertFalse(ahorcado.validar_letra_repetida('a'))
+        letra='x'
+        if(not ahorcado.prueba_letra(letra)):
+            ahorcado.agregar_letra(letra)                        
+            self.assertEqual(ahorcado.get_vidas(),6)
+
+    def test_sin_vidas(self):
+        ahorcado = Ahorcado()        
+        letras = ['z','k','p','l','h','e','o']
+        for letra in letras:
+            ahorcado.agregar_letra(letra)     
+        with self.assertRaises(Exception) as context:    
+            ahorcado.validar_vidas()
+        self.assertTrue('Perdiste' in str(context.exception))
 
 
 if __name__ == '__main__':

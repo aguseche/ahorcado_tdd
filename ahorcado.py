@@ -84,8 +84,8 @@ class Ahorcado:
                     print(self.letras_correctas)
                     print(self.letras_erroneas)
                     print("/************************/")
-        except e:   
-                print(e)
+        except:
+            print('Excepcion')
             
 
 

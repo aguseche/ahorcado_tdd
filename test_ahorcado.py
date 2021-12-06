@@ -47,14 +47,14 @@ class TestJuego(unittest.TestCase):
             ahorcado.agregar_letra(letra)                        
             self.assertEqual(ahorcado.get_vidas(),6)
 
-    def test_sin_vidas(self):
-        ahorcado = Ahorcado()        
-        letras = ['z','k','p','l','h','e','o']
-        for letra in letras:
-            ahorcado.agregar_letra(letra)     
-        with self.assertRaises(Exception) as context:    
-            ahorcado.validar_vidas()
-        self.assertTrue('Perdiste' in str(context.exception))
+    # def test_sin_vidas(self):
+    #     ahorcado = Ahorcado()        
+    #     letras = ['z','k','p','l','h','e','o']
+    #     for letra in letras:
+    #         ahorcado.agregar_letra(letra)     
+    #     with self.assertRaises(Exception) as context:    
+    #         ahorcado.validar_vidas()
+    #     self.assertTrue('Perdiste' in str(context.exception))
 
 
 if __name__ == '__main__':

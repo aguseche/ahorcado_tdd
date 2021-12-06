@@ -7,6 +7,8 @@ class Ahorcado:
     letras_correctas = []
     letras_erroneas = []
     vidas=7
+    
+    # constructor
 
     def __init__(self):
         self.name = None
@@ -14,11 +16,15 @@ class Ahorcado:
         for l in self.palabra:
             self.letras_correctas.append("_")
 
+    # gets
+
     def get_name(self)->str:
         return self.name
     
     def get_vidas(self)->int:
         return  self.vidas
+
+    # methods
 
     def restar_vida(self)->int:
         self.vidas=self.vidas-1
@@ -36,7 +42,16 @@ class Ahorcado:
         if(self.vidas>=1):
             return True
         else: 
-            raise Exception('Perdiste')
+            print('Perdiste \n')
+            respuesta=' '
+            #falta terminar esto
+            while(respuesta !='s' and respuesta !='n'):
+                print('Quiere jugar de vuelta? (s/n)')
+                respuesta = input()            
+                if(respuesta=='s' ):
+                    self.clearPalabras()
+                    self.jugar()
+
 
 
     def agregar_letra(self, letra:str)-> None:
@@ -48,14 +63,23 @@ class Ahorcado:
                         posiciones.append(pos)
                 for pos in posiciones:
                     self.letras_correctas[pos] = letra
-                #print('Correcto !')
+                print("Palabra: ")
+                print(self.letras_correctas, "\n")
+                print("Letras Incorrectas: ")
+                print(self.letras_erroneas, "\n")
+                print("/************************/\n")
             else:
-                self.restar_vida()
-                
+                self.restar_vida()                
                 self.letras_erroneas.append(letra)
-                print('Oops. Te quedan ',self.vidas,' vidas')
+                print("Palabra: ")
+                print(self.letras_correctas, "\n")
+                print("Letras Incorrectas: ")
+                print(self.letras_erroneas, "\n")
+                print('Oops. Te quedan ',self.vidas,' vidas \n')
+                print("/************************/ \n")
         else:
             print('No puede repetir letras')
+            print("/************************/ \n")
       
 
     def validar_letra_repetida(self, letra:str)->bool:
@@ -67,25 +91,24 @@ class Ahorcado:
         for p in self.palabra:
             if self.letras_correctas[p] == '_':
                 break
-        print("Ganasteee !!!! :) :D")
+        print("Ganasteee !!!! :) :D ")
+        print("/************************/ \n")
 
+    def clearPalabras(self):
+        self.letras_correctas = []
+        self.letras_erroneas = []
+        self.vidas=3
 
     def jugar(self):
-        try:
-            print('Bienvenido, ingrese su nombre: ')
-            name = input()
-            self.login(name = name)
-            letra = " "
-            while(letra != '.' ):
-                if(self.validar_vidas()):
-                    print('ingrese una letra: (. para salir) ')
-                    letra = input()
-                    self.agregar_letra(letra)
-                    print(self.letras_correctas)
-                    print(self.letras_erroneas)
-                    print("/************************/")
-        except:
-            print('Excepcion')
+        print('Bienvenido, ingrese su nombre: ')
+        name = input()
+        self.login(name = name)
+        letra = " "
+        while(letra != '.' ):
+            if(self.validar_vidas()):
+                print('ingrese una letra: (. para salir) ')
+                letra = input()
+                self.agregar_letra(letra)                
             
 
 

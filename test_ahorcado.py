@@ -29,32 +29,38 @@ class TestLogin(unittest.TestCase):
         with self.assertRaises(Exception) as context:    
             ahorcado.login('Agustin Etcheverry')
         self.assertTrue('El nombre no puede tener caracteres especiales o espacios' in str(context.exception))
+    def test_getName(self):
+        ahorcado = Ahorcado()
+        ahorcado.login('Agustin')
+        self.assertEqual('Agustin',ahorcado.get_name())
 
 class TestJuego(unittest.TestCase):
+    def test_inicializarVariables(self):
+        ahorcado = Ahorcado()
+        ahorcado.inicializarJuego()
+        self.assertEqual(ahorcado.get_vidas(),7)
+        self.assertEqual(ahorcado.letras_erroneas,[])
+        self.assertTrue(ahorcado.palabra!=[])
+
     def test_arriesgo_letra(self):
         ahorcado = Ahorcado()
+        ahorcado.inicializarJuego()
         self.assertTrue(ahorcado.prueba_letra('a'))
 
     def test_letra_repetida(self):
         ahorcado = Ahorcado()
-        ahorcado.agregar_letra('a')
+        ahorcado.inicializarJuego()
+        ahorcado.agregar_letra('a')        
         self.assertFalse(ahorcado.validar_letra_repetida('a'))
 
     def test_probar_vidas(self):
         ahorcado = Ahorcado()
-        letra='x'
+        ahorcado.inicializarJuego()
+        letra='x'        
         if(not ahorcado.prueba_letra(letra)):
             ahorcado.agregar_letra(letra)                        
             self.assertEqual(ahorcado.get_vidas(),6)
 
-    # def test_sin_vidas(self):
-    #     ahorcado = Ahorcado()        
-    #     letras = ['z','k','p','l','h','e','o']
-    #     for letra in letras:
-    #         ahorcado.agregar_letra(letra)     
-    #     with self.assertRaises(Exception) as context:    
-    #         ahorcado.validar_vidas()
-    #     self.assertTrue('Perdiste' in str(context.exception))
 
 
 if __name__ == '__main__':

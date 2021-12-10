@@ -1,5 +1,5 @@
 import unittest
-from ahorcado import Ahorcado
+from api.logic.ahorcado_logic import Ahorcado
 
 class TestLogin(unittest.TestCase):
     def test_nombre_vacio(self):
@@ -60,8 +60,6 @@ class TestJuego(unittest.TestCase):
         if(not ahorcado.prueba_letra(letra)):
             ahorcado.agregar_letra(letra)                        
             self.assertEqual(ahorcado.get_vidas(),6)
-
-
 
 if __name__ == '__main__':
     unittest.main()

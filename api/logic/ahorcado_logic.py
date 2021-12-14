@@ -21,7 +21,7 @@ class Ahorcado:
     def inicializarJuego(self):        
         self.resultado = []
         self.letras_erroneas = []
-        self.vidas=7
+        self.vidas=6
         self.palabra = list(random.choice(self.palabras))
         for l in range(len(self.palabra)):
             self.resultado.append("_")

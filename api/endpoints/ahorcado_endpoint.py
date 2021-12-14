@@ -34,7 +34,7 @@ async def letter(nick:str, letter:str):
     if respuesta is not False:
         lista_ahorcado.remove(ahorcado)
         return respuesta
-    return lista_ahorcado
+    return ahorcado
 
 @router.post('/reset')
 async def reset(nick:str):

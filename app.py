@@ -15,10 +15,7 @@ app.include_router(api_router)
 
 # CORS (conectarse desde el front)
 origins = [
-    "http://localhost.tiangolo.com",
-    "https://localhost.tiangolo.com",
-    "http://localhost",
-    "http://localhost:8080",
+    "*",
 ]
 
 app.add_middleware(

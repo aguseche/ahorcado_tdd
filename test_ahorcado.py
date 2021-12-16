@@ -38,7 +38,7 @@ class TestJuego(unittest.TestCase):
     def test_inicializarVariables(self):
         ahorcado = Ahorcado()
         ahorcado.inicializarJuego()
-        self.assertEqual(ahorcado.get_vidas(),7)
+        self.assertEqual(ahorcado.get_vidas(),6)
         self.assertEqual(ahorcado.letras_erroneas,[])
         self.assertTrue(ahorcado.palabra!=[])
 
@@ -59,7 +59,7 @@ class TestJuego(unittest.TestCase):
         letra='x'        
         if(not ahorcado.prueba_letra(letra)):
             ahorcado.agregar_letra(letra)                        
-            self.assertEqual(ahorcado.get_vidas(),6)
+            self.assertEqual(ahorcado.get_vidas(),5)
 
 if __name__ == '__main__':
     unittest.main()

@@ -1,6 +1,6 @@
 import json
 
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
 from api.logic.ahorcado_logic import Ahorcado
 from utils import find_ahorcado
 router = APIRouter()

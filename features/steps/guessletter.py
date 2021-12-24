@@ -1,11 +1,5 @@
 from behave import *
 from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.by import By
-import time
-import pandas as pd
 
 options =  webdriver.ChromeOptions()
 
@@ -19,7 +13,7 @@ def step_impl(context):
     input=driver.find_element_by_id("name")
     input.send_keys("damian")
 
-@given('Start a game')
+@given('Start a gamee')
 def step_impl(context):    
     driver.find_element_by_id("loginBtn").click()
 

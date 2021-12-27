@@ -1,74 +1,109 @@
+from fastapi.testclient import TestClient
+from app import app
 import unittest
-from api.logic.ahorcado_logic import Ahorcado
-from fastapi import HTTPException
 
-class TestLogin(unittest.TestCase):
-    def test_nombre_vacio(self):
-        ahorcado = Ahorcado()
-        try:
-            ahorcado.login('')
-        except HTTPException as e:
-            self.assertTrue('Debe ingresar un nombre',e.detail)
+from models.ahorcado_model import PlayAhorcado_Model
+client = TestClient(app)
+
+class TestStart(unittest.TestCase):
+    # def setUp(self) -> None:
+    #     self.client = TestClient(app)
+    def test_leer_main(self)->None:
+        response = client.get("/")
+        assert response.status_code == 200
+        assert response.json() == {"msg": "Hello World"}
+
+    def test_minlen_3(self)->None:
+        nombre = {
+            'name': 'xd'
+        }
+        response = client.post("/start", json=nombre)
+        assert response.status_code == 400
+        assert response.json() == {"detail": "El nombre debe tener mas de 2 caracteres"}
+
+    def test_maxlen_25(self)->None:
+        nombre = {
+            'name': 'holamellamoagustinetcheverry'
+        }
+        response = client.post("/start", json=nombre)
+        assert response.status_code == 400
+        assert response.json() == {"detail": "El nombre no debe tener mas de 25 caracteres"}
+
+    def test_special_characters(self)->None:
+        nombre = {
+            'name': '@3hola'
+        }
+        response = client.post("/start", json=nombre)
+        assert response.status_code == 400
+        assert response.json() == {"detail": "El nombre no puede tener caracteres especiales o espacios"}
+
+    def test_empty_spaces(self)->None:
+        nombre = {
+            'name': 'Agustin Etcheverry'
+        }
+        response = client.post("/start", json=nombre)
+        assert response.status_code == 400
+        assert response.json() == {"detail": "El nombre no puede tener caracteres especiales o espacios"}
     
-    def test_maxlen_25(self):
-        ahorcado = Ahorcado()
-        try:  
-            ahorcado.login('holamellamoagustinetcheverry')
-        except HTTPException as e:
-            self.assertTrue('El nombre no debe tener mas de 25 caracteres',e.detail)
-   
-    def test_minlen_3(self):
-        ahorcado = Ahorcado()
-        try:   
-            ahorcado.login('xd')
-        except HTTPException as e: 
-            self.assertTrue('El nombre debe tener mas de 2 caracteres',e.detail)
+    def test_getName(self)->None:
+        nombre = {
+            'name': 'Agustin'
+        }
+        response = client.post("/start", json=nombre)
+        assert response.status_code == 200
+        assert response.json()['name'] == nombre['name']
 
-    def test_caracteres_especiales(self):
-        ahorcado = Ahorcado()
-        try:   
-            ahorcado.login('@3hola')
-        except HTTPException as e: 
-            self.assertTrue('El nombre no puede tener caracteres especiales o espacios',e.detail)
+
+class TestGame(unittest.TestCase):
     
-    def test_espacios_vacios(self):
-        ahorcado = Ahorcado()
-        try:   
-            ahorcado.login('Agustin Etcheverry')
-        except HTTPException as e: 
-            self.assertTrue('El nombre no puede tener caracteres especiales o espacios',e.detail)
-    
-    def test_getName(self):
-        ahorcado = Ahorcado()
-        ahorcado.login('Agustin')
-        self.assertEqual('Agustin',ahorcado.get_name())
+    def test_initializeVariables(self):
+        nombre = {
+            'name': 'Agustin'
+        }
+        response = client.post("/start", json=nombre)
+        assert response.status_code == 200
+        assert response.json()['vidas'] == 6
+        assert response.json()['letras_erroneas'] == []
+        assert response.json()['palabra'] != []
 
-class TestJuego(unittest.TestCase):
-    def test_inicializarVariables(self):
-        ahorcado = Ahorcado()
-        ahorcado.inicializarJuego()
-        self.assertEqual(ahorcado.get_vidas(),6)
-        self.assertEqual(ahorcado.letras_erroneas,[])
-        self.assertTrue(ahorcado.palabra!=[])
+    def test_try_letter(self):
+        play_ahorcado = {
+            'name': 'Agustin',
+            'letter': 'a'
+        }
+        response = client.post("/letter", json=play_ahorcado)
+        assert response.status_code == 200
+        assert response.json()['name'] == 'Agustin'
 
-    def test_arriesgo_letra(self):
-        ahorcado = Ahorcado()
-        ahorcado.inicializarJuego()
-        self.assertTrue(ahorcado.prueba_letra('a'))
 
     def test_letra_repetida(self):
-        ahorcado = Ahorcado()
-        ahorcado.inicializarJuego()
-        ahorcado.agregar_letra('a')        
-        self.assertFalse(ahorcado.validar_letra_repetida('a'))
+        nombre = {
+            'name': 'Damian'
+        }
+        response = client.post("/start", json=nombre)
+        assert response.status_code == 200
+        play_ahorcado = {
+            'name': 'Damian',
+            'letter': 'a'
+        }
+        response = client.post("/letter", json=play_ahorcado)
+        assert response.status_code == 200
+        response = client.post("/letter", json=play_ahorcado)
+        assert response.status_code == 200
+        assert response.json() == {'detail':'letra repetida'}
+
 
     def test_probar_vidas(self):
-        ahorcado = Ahorcado()
-        ahorcado.inicializarJuego()
-        letra='x'        
-        if(not ahorcado.prueba_letra(letra)):
-            ahorcado.agregar_letra(letra)                        
-            self.assertEqual(ahorcado.get_vidas(),5)
-
-if __name__ == '__main__':
-    unittest.main()
+        nombre = {
+            'name': 'Giova'
+        }
+        response = client.post("/start", json=nombre)
+        assert response.status_code == 200
+        play_ahorcado = {
+            'name': 'Giova',
+            'letter': 'x'
+        }
+        response = client.post("/letter", json=play_ahorcado)
+        assert response.status_code == 200
+        if play_ahorcado['letter'] in response.json()['letras_erroneas']:
+            assert response.json()['vidas'] == 5

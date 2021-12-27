@@ -5,7 +5,6 @@ class Ahorcado:
     name:str
     palabra: str     
     palabras=["caramelo","auto","salir","pato","puerta"]
-    palabra:str  
     
     # constructor
     def __init__(self):

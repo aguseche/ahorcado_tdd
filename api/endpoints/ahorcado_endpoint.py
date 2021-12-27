@@ -45,7 +45,7 @@ async def letter(playAhorcado: PlayAhorcado_Model):
 @router.post('/reset')
 async def reset(baseAhorcado: BaseAhorcado_Model):
     '''Resetear el juego'''
-    ahorcado = find_ahorcado(lista_ahorcado, nick)
+    ahorcado = find_ahorcado(lista_ahorcado, baseAhorcado.name)
     #Validar ahorcado
     if ahorcado is None:
         return {'detail':'no hay tal nick'}

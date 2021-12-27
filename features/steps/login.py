@@ -32,5 +32,5 @@ def step_impl(context):
 @then('Start the game')
 def step_impl(context):    
     msg=driver.find_element_by_id("palabra").text
-    assert msg is not " "
+    assert msg != " "
     driver.quit()

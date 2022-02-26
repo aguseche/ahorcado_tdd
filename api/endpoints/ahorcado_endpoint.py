@@ -11,11 +11,11 @@ router = APIRouter()
 lista_ahorcado = []
 
 @router.get('/')
-async def main():
+def main():
     return {"msg": "Hello World"}
 
 @router.post('/start')
-async def start(baseAhorcado: BaseAhorcado_Model):
+def start(baseAhorcado: BaseAhorcado_Model):
     '''Inicializamos el juego - devolvemos palabra, vidas'''
     ahorcado = Ahorcado()
     ahorcado.login(name=baseAhorcado.name)
@@ -24,7 +24,7 @@ async def start(baseAhorcado: BaseAhorcado_Model):
     return ahorcado
 
 @router.post('/letter')
-async def letter(playAhorcado: PlayAhorcado_Model):
+def letter(playAhorcado: PlayAhorcado_Model):
     '''Probamos con una letra en la palabra, devolvemos verdadero o falso y el arreglo ordenado'''
     ahorcado = find_ahorcado(lista_ahorcado, playAhorcado.name)
     #Validar ahorcado
@@ -43,7 +43,7 @@ async def letter(playAhorcado: PlayAhorcado_Model):
     return ahorcado
 
 @router.post('/reset')
-async def reset(baseAhorcado: BaseAhorcado_Model):
+def reset(baseAhorcado: BaseAhorcado_Model):
     '''Resetear el juego'''
     ahorcado = find_ahorcado(lista_ahorcado, baseAhorcado.name)
     #Validar ahorcado

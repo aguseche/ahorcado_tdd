@@ -2,13 +2,13 @@ from typing import List, Optional
 
 from pydantic import BaseModel, Field
 
-class BaseAhorcado_Model(BaseModel):
+class base_ahorcado_model(BaseModel):
     name:str = Field(None, example="Agustin")
 
-class PlayAhorcado_Model(BaseAhorcado_Model):
+class play_ahorcado_model(base_ahorcado_model):
     letter:str = Field(None, example="a")
 
-class Ahorcado_Model(BaseModel):
+class ahorcado_model(BaseModel):
     name: str
     palabra: str
     vidas: int

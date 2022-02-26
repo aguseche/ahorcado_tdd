@@ -36,3 +36,5 @@ jobs:
         pytest
     - name: Tests
       run: python test_ahorcado.py
+    - name: Code coverage
+      run: coverage report -m

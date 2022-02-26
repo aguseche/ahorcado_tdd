@@ -3,7 +3,7 @@ from selenium import webdriver
 
 options =  webdriver.ChromeOptions()
 
-driver_path = 'C:/Users/Usuario/py/Agiles/ahorcado_tdd/features/chromedriver.exe'
+driver_path = '../chromedriver.exe'
 driver = webdriver.Chrome(driver_path, chrome_options=options)
 driver.implicitly_wait(15)
 

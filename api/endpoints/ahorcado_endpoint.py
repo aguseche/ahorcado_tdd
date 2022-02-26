@@ -1,8 +1,8 @@
 '''Importar api router'''
 from fastapi import APIRouter
-from api.logic.ahorcado_logic import Ahorcado# pylint: disable=import-error
-from utils import find_ahorcado# pylint: disable=import-error
-from models.ahorcado_model import BaseAhorcadoModel, PlayAhorcadoModel# pylint: disable=import-error
+from api.logic.ahorcado_logic import Ahorcado
+from utils import find_ahorcado
+from models.ahorcado_model import BaseAhorcadoModel, PlayAhorcadoModel
 router = APIRouter()
 lista_ahorcado = []
 

@@ -1,6 +1,6 @@
 '''Imports'''
 import random
-from utils import validaciones_nombre# pylint: disable=import-error
+from utils import validaciones_nombre
 
 class Ahorcado:
     '''Clase Ahorcado'''
@@ -10,6 +10,9 @@ class Ahorcado:
     def __init__(self):
         '''init'''
         self.name = None
+        self.resultado = None
+        self.letras_erroneas = None
+        self.vidas = None
     def get_name(self)->str:
         '''get_name'''
         return self.name
@@ -24,7 +27,7 @@ class Ahorcado:
         self.letras_erroneas = []
         self.vidas=6
         self.palabra = list(random.choice(self.palabras))
-        for l in range(len(self.palabra)):
+        for lenght in range(len(self.palabra)):# pylint: disable=unused-variable
             self.resultado.append("_")
 
     def restar_vida(self)->int:

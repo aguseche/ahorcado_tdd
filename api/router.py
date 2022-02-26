@@ -1,3 +1,4 @@
+'''Imports'''
 from fastapi import APIRouter
 
 from api.endpoints import ahorcado_endpoint

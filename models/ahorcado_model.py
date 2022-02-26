@@ -1,14 +1,18 @@
-from typing import List, Optional
+'''Imports'''
+from typing import List
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field# pylint: disable=no-name-in-module
 
-class base_ahorcado_model(BaseModel):
+class BaseAhorcadoModel(BaseModel):# pylint: disable=too-few-public-methods
+    '''Clase Base Ahorcado'''
     name:str = Field(None, example="Agustin")
 
-class play_ahorcado_model(base_ahorcado_model):
+class PlayAhorcadoModel(BaseAhorcadoModel):# pylint: disable=too-few-public-methods
+    '''Clase Base Play Ahorcado'''
     letter:str = Field(None, example="a")
 
-class ahorcado_model(BaseModel):
+class AhoradoModel(BaseModel):# pylint: disable=too-few-public-methods
+    '''Clase Ahorcado'''
     name: str
     palabra: str
     vidas: int

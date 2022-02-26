@@ -1,23 +1,24 @@
+'''Imports'''
 from utils import validaciones_nombre
 import random
 
 class Ahorcado:
+    '''Clase Ahorcado'''
     name:str
-    palabra: str     
+    palabra: str
     palabras=["caramelo","auto","salir","pato","puerta"]
-    
-    # constructor
     def __init__(self):
+        '''init'''
         self.name = None
-    # gets
     def get_name(self)->str:
+        '''get_name'''
         return self.name
-    
     def get_vidas(self)->int:
+        '''get_vidas'''
         return  self.vidas
 
     # methods
-    def inicializarJuego(self):        
+    def inicializarJuego(self):
         self.resultado = []
         self.letras_erroneas = []
         self.vidas=6
@@ -31,81 +32,31 @@ class Ahorcado:
     def login(self,name)-> None:
         validaciones_nombre(name)
         self.name = name
-    
     def prueba_letra(self, letra:str)-> bool:
         if letra in self.palabra:
             return True
         return False
 
     def agregar_letra(self, letra:str)-> None:
-        if self.prueba_letra(letra=letra):                
+        if self.prueba_letra(letra=letra):
             posiciones = []
             for pos,char in enumerate(self.palabra):
-                if(char == letra):
+                if char == letra:
                     posiciones.append(pos)
             for pos in posiciones:
                 self.resultado[pos] = letra
         else:
-            self.restar_vida()                
+            self.restar_vida()
             self.letras_erroneas.append(letra)
-        
+
     def validar_letra_repetida(self, letra:str)->bool:
         if (letra in self.resultado) or (letra in self.letras_erroneas):
             return False
         return True
 
     def validar_finalizacion(self):
-        if(self.palabra==self.resultado):
+        if self.palabra==self.resultado:
             return {'respuesta':'ganaste'}
-        if(self.vidas==0):
+        if self.vidas==0:
             return {'respuesta':'perdiste'}
         return False
-
-#     def imprimirLetras(self,palab):
-#         for i in palab:
-#             print(i,end=" ")
-#         print("\n")
-
-#     def mostrarAhorcado(self):        
-#         print("/******AHORCADO******/")
-#         print("Palabra: ")
-#         self.imprimirLetras(self.resultado)
-#         print("Letras Incorrectas: ")
-#         self.imprimirLetras(self.letras_erroneas)
-#         print('Te quedan ',self.vidas,' vidas \n')
-                        
-
-
-#     def jugar(self):
-#         print('Bienvenido al Ahorcado, ingrese su nombre: ')        
-#         name = input()            
-#         self.login(name)
-#         self.inicializarJuego()
-#         while True:
-#             while(not self.validar_finalizacion() ):
-#                 os.system("cls")
-#                 self.mostrarAhorcado()
-#                 while True: 
-#                     print('ingrese una letra: (. para salir) ')
-#                     letraSF = input()
-#                     letra=letraSF.lower()                                  
-#                     if self.validar_letra_repetida(letra):  
-#                         self.agregar_letra(letra)    
-#                         break
-#                     else:
-#                         print("\n/************************/")
-#                         print('No puede repetir letras')
-#                         print("/************************/\n")
-#             print("Quiere jugar de nuevo? (s/n)")            
-#             resp=input()
-#             if(resp=="n"):
-#                 break
-#             elif(resp=="s"):
-#                 self.inicializarJuego()
-                
-
-
-# if __name__ == '__main__':
-#     ahorcado = Ahorcado()
-#     ahorcado.jugar()
-

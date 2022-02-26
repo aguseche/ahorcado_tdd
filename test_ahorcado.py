@@ -2,7 +2,7 @@ from fastapi.testclient import TestClient
 from app import app
 import unittest
 
-from models.ahorcado_model import PlayAhorcado_Model
+from models.ahorcado_model import play_ahorcado_model
 client = TestClient(app)
 
 class TestStart(unittest.TestCase):

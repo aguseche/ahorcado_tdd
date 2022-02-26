@@ -1,6 +1,6 @@
 '''Imports'''
-from utils import validaciones_nombre
 import random
+from utils import validaciones_nombre# pylint: disable=import-error
 
 class Ahorcado:
     '''Clase Ahorcado'''
@@ -18,7 +18,8 @@ class Ahorcado:
         return  self.vidas
 
     # methods
-    def inicializarJuego(self):
+    def inicializar_juego(self):
+        '''inicializar juego'''
         self.resultado = []
         self.letras_erroneas = []
         self.vidas=6
@@ -27,17 +28,21 @@ class Ahorcado:
             self.resultado.append("_")
 
     def restar_vida(self)->int:
+        '''restar vidas'''
         self.vidas-=1
 
     def login(self,name)-> None:
+        '''login'''
         validaciones_nombre(name)
         self.name = name
     def prueba_letra(self, letra:str)-> bool:
+        '''prueba letra'''
         if letra in self.palabra:
             return True
         return False
 
     def agregar_letra(self, letra:str)-> None:
+        '''agregar letra'''
         if self.prueba_letra(letra=letra):
             posiciones = []
             for pos,char in enumerate(self.palabra):
@@ -50,11 +55,13 @@ class Ahorcado:
             self.letras_erroneas.append(letra)
 
     def validar_letra_repetida(self, letra:str)->bool:
+        '''validar letra repetida'''
         if (letra in self.resultado) or (letra in self.letras_erroneas):
             return False
         return True
 
     def validar_finalizacion(self):
+        '''validar finalizacion juego'''
         if self.palabra==self.resultado:
             return {'respuesta':'ganaste'}
         if self.vidas==0:

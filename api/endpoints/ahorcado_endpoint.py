@@ -16,7 +16,7 @@ def start(base_ahorcado: BaseAhorcadoModel):
     '''Inicializamos el juego - devolvemos palabra, vidas'''
     ahorcado = Ahorcado()
     ahorcado.login(name=base_ahorcado.name)
-    ahorcado.inicializarJuego()
+    ahorcado.inicializar_juego()
     lista_ahorcado.append(ahorcado)
     return ahorcado
 

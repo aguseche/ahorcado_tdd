@@ -1,9 +1,11 @@
 from behave import *
 from selenium import webdriver
+from webdriver_manager.chrome import ChromeDriverManager
 
 # options =  webdriver.ChromeOptions()
+
 driver_path = 'features/chromedriver.exe'
-driver = webdriver.Chrome(driver_path)
+driver = webdriver.Chrome(ChromeDriverManager().install())
 driver.implicitly_wait(15)
 
 @given('I am on the login page')

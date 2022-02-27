@@ -2,9 +2,9 @@ from behave import *
 from selenium import webdriver
 
 
-options =  webdriver.ChromeOptions()
+# options =  webdriver.ChromeOptions()
 driver_path = 'features/chromedriver.exe'
-driver = webdriver.Chrome(driver_path, chrome_options=options)
+driver = webdriver.Chrome(driver_path)
 driver.implicitly_wait(15)
 
 @given('I set giova as name')

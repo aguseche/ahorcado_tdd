@@ -1,11 +1,12 @@
 from behave import *
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
+from webdriver_manager.utils import ChromeType
 
 # options =  webdriver.ChromeOptions()
 
 driver_path = 'features/chromedriver.exe'
-driver = webdriver.Chrome(ChromeDriverManager().install())
+driver = webdriver.Chrome(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install())
 driver.implicitly_wait(15)
 
 @given('I am on the login page')

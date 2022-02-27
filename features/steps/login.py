@@ -2,13 +2,13 @@ from behave import *
 from selenium import webdriver
 
 options =  webdriver.ChromeOptions()
-driver_path = '../chromedriver.exe'
+driver_path = 'features/chromedriver.exe'
 driver = webdriver.Chrome(driver_path, chrome_options=options)
 driver.implicitly_wait(15)
 
 @given('I am on the login page')
 def step_impl(context):  
-    driver.get('http://localhost:3000/')
+    driver.get('https://ahorcado-agiles.netlify.app/')
     
 @when('I set "{name}" as name')
 def step_impl(context,name):    

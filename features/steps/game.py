@@ -3,13 +3,13 @@ from selenium import webdriver
 
 
 options =  webdriver.ChromeOptions()
-driver_path = '../chromedriver.exe'
+driver_path = 'features/chromedriver.exe'
 driver = webdriver.Chrome(driver_path, chrome_options=options)
 driver.implicitly_wait(15)
 
 @given('I set giova as name')
 def step_impl(context):  
-    driver.get('http://localhost:3000/')
+    driver.get('https://ahorcado-agiles.netlify.app/')
     input=driver.find_element_by_id("name")
     input.send_keys("giova")
 

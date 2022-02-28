@@ -1,15 +1,31 @@
 from behave import *
 from selenium import webdriver
+from webdriver_manager.chrome import ChromeDriverManager
+from webdriver_manager.utils import ChromeType
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
 
-options =  webdriver.ChromeOptions()
+chrome_service = Service(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install())
 
-driver_path = '../chromedriver.exe'
-driver = webdriver.Chrome(driver_path, chrome_options=options)
+chrome_options = Options()
+options = [
+    "--headless",
+    "--disable-gpu",
+    "--window-size=1920,1200",
+    "--ignore-certificate-errors",
+    "--disable-extensions",
+    "--no-sandbox",
+    "--disable-dev-shm-usage"
+]
+for option in options:
+    chrome_options.add_argument(option)
+
+driver = webdriver.Chrome(service=chrome_service, options=chrome_options)
 driver.implicitly_wait(15)
 
 @given('I set damian as name')
 def step_impl(context):  
-    driver.get('http://localhost:3000/')
+    driver.get('https://ahorcado-agiles.netlify.app/')
     input=driver.find_element_by_id("name")
     input.send_keys("damian")
 

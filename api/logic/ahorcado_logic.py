@@ -69,7 +69,7 @@ class Ahorcado:
 
     def validar_finalizacion(self):
         '''validar finalizacion juego'''
-        if self.palabra==self.resultado:
+        if list(self.palabra)==self.resultado:
             return {'detail':'ganaste'}
         if self.vidas==0:
             return {'detail':'perdiste'}

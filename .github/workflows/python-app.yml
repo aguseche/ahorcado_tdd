@@ -37,6 +37,6 @@ jobs:
       run: coverage report -m
     - name: Static code analyzer
       run: pylint api models app.py
-    # - name: Behave
-    #   run: behave
+    - name: Behave
+      run: behave
             

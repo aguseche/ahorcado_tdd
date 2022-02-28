@@ -8,7 +8,7 @@ class Ahorcado:
     palabra: str
     palabras=["caramelo","auto","salir","pato","puerta"]
 
-    def __init__(self, resultado, letras_erroneas, vidas,palabra,name=None):# pylint: disable=too-many-arguments
+    def __init__(self,name=None, resultado=None, letras_erroneas=None, vidas=None,palabra=None):# pylint: disable=too-many-arguments
         '''init'''
         self.name = name
         self.resultado = resultado

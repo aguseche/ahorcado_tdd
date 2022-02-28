@@ -18,5 +18,3 @@ class AhorcadoModel(BaseModel):# pylint: disable=too-few-public-methods
 class PlayAhorcadoModel(AhorcadoModel):# pylint: disable=too-few-public-methods
     '''Clase Base Play Ahorcado'''
     letter:str = Field(None, example="a")
-
-

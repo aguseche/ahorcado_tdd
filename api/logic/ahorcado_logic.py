@@ -26,8 +26,9 @@ class Ahorcado:
         self.resultado = []
         self.letras_erroneas = []
         self.vidas=6
-        self.palabra = list(random.choice(self.palabras))
-        for lenght in range(len(self.palabra)):# pylint: disable=unused-variable
+        self.palabra=random.choice(self.palabras)
+        palabraAux = list(self.palabra)
+        for lenght in range(len(palabraAux)):# pylint: disable=unused-variable
             self.resultado.append("_")
 
     def restar_vida(self)->int:

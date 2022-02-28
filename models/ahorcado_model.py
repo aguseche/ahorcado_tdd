@@ -7,14 +7,14 @@ class BaseAhorcadoModel(BaseModel):# pylint: disable=too-few-public-methods
     '''Clase Base Ahorcado'''
     name:str = Field(None, example="Agustin")
 
-class PlayAhorcadoModel(BaseAhorcadoModel):# pylint: disable=too-few-public-methods
+class AhorcadoModel(BaseModel):# pylint: disable=too-few-public-methods
+    '''Clase Ahorcado'''
+    name: str =Field(example="Agustin")
+    palabra: str=Field(example="pato")
+    vidas: int=Field(example="6")
+    resultado: List=Field(example=["_","_","_","_"])
+    letras_erroneas: List=Field(example=[])
+
+class PlayAhorcadoModel(AhorcadoModel):# pylint: disable=too-few-public-methods
     '''Clase Base Play Ahorcado'''
     letter:str = Field(None, example="a")
-
-class AhoradoModel(BaseModel):# pylint: disable=too-few-public-methods
-    '''Clase Ahorcado'''
-    name: str
-    palabra: str
-    vidas: int
-    resultado: List
-    letras_erroneas: List

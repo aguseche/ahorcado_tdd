@@ -7,12 +7,15 @@ class Ahorcado:
     name:str
     palabra: str
     palabras=["caramelo","auto","salir","pato","puerta"]
-    def __init__(self):
+
+    def __init__(self,name=None, resultado=None, letras_erroneas=None, vidas=None,palabra=None):# pylint: disable=too-many-arguments
         '''init'''
-        self.name = None
-        self.resultado = None
-        self.letras_erroneas = None
-        self.vidas = None
+        self.name = name
+        self.resultado = resultado
+        self.letras_erroneas = letras_erroneas
+        self.vidas = vidas
+        self.palabra = palabra
+
     def get_name(self)->str:
         '''get_name'''
         return self.name

@@ -68,8 +68,12 @@ class TestGame(unittest.TestCase):
 
     def test_try_letter(self):
         play_ahorcado = {
-            'name': 'Agustin',
-            'letter': 'a'
+            "name": 'Agustin',
+            "letter": 'a',
+            "palabra": "pato",
+            "vidas": 6,
+            "resultado": ["_","_","_","_"],
+            "letras_erroneas": [],
         }
         response = client.post("/letter", json=play_ahorcado)
         assert response.status_code == 200
@@ -83,11 +87,13 @@ class TestGame(unittest.TestCase):
         response = client.post("/start", json=nombre)
         assert response.status_code == 200
         play_ahorcado = {
-            'name': 'Damian',
-            'letter': 'a'
+            "name": 'Damian',
+            "letter": 'a',
+            "palabra": "pato",
+            "vidas": 6,
+            "resultado": ["_","a","_","_"],
+            "letras_erroneas": [],
         }
-        response = client.post("/letter", json=play_ahorcado)
-        assert response.status_code == 200
         response = client.post("/letter", json=play_ahorcado)
         assert response.status_code == 200
         assert response.json() == {'detail':'letra repetida'}
@@ -100,8 +106,12 @@ class TestGame(unittest.TestCase):
         response = client.post("/start", json=nombre)
         assert response.status_code == 200
         play_ahorcado = {
-            'name': 'Giova',
-            'letter': 'x'
+            "name": 'Agustin',
+            "letter": 'x',
+            "palabra": "pato",
+            "vidas": 6,
+            "resultado": ["_","_","_","_"],
+            "letras_erroneas": [],
         }
         response = client.post("/letter", json=play_ahorcado)
         assert response.status_code == 200

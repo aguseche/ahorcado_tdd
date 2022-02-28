@@ -23,7 +23,10 @@ def start(base_ahorcado: BaseAhorcadoModel):
 @router.post('/letter')
 def letter(play_ahorcado: PlayAhorcadoModel):
     '''Probamos con una letra en la palabra, devolvemos verdadero o falso y el arreglo ordenado'''
-    ahorcado = find_ahorcado(lista_ahorcado, play_ahorcado.name)
+    # ahorcado = find_ahorcado(lista_ahorcado, play_ahorcado.name)
+    ahorcado = Ahorcado(name=play_ahorcado.name, palabra=play_ahorcado.palabra,
+                        vidas=play_ahorcado.vidas, resultado=play_ahorcado.resultado,
+                        letras_erroneas=play_ahorcado.letras_erroneas)
     #Validar ahorcado
     if ahorcado is None:
         return {'detail':'no hay tal nick'}

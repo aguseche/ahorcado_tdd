@@ -38,7 +38,7 @@ def letter(play_ahorcado: PlayAhorcadoModel):
     #Validar finalizacion
     respuesta = ahorcado.validar_finalizacion()
     if respuesta is not False:
-        lista_ahorcado.remove(ahorcado)
+        # lista_ahorcado.remove(ahorcado)
         return respuesta
     return ahorcado
 

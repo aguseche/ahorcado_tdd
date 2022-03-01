@@ -38,11 +38,11 @@ def step_impl(context):
     input=driver.find_element_by_id("name")
     input.send_keys("giova")
 
-@given('I set damian as name')
+@given('I set eche as name')
 def step_impl(context):  
     driver.get('https://ahorcado-agiles.netlify.app/')
     input=driver.find_element_by_id("name")
-    input.send_keys("damian")
+    input.send_keys("eche")
 
 @given('Start a game')
 def step_impl(context):    

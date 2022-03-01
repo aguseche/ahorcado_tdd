@@ -7,7 +7,7 @@ Feature: Play a game
         Then I see a message that says Ganaste
 
     Scenario: Lose a game
-        Given I set damian as name
+        Given I set eche as name
         And Start a game
         When Insert six wrong letters
         Then I see a message that says Perdiste

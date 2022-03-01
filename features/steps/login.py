@@ -21,7 +21,7 @@ for option in options:
     chrome_options.add_argument(option)
 
 driver = webdriver.Chrome(service=chrome_service, options=chrome_options)
-driver.implicitly_wait(15)
+driver.implicitly_wait(10)
 
 @given('I am on the login page')
 def step_impl(context):  

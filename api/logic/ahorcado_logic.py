@@ -63,7 +63,7 @@ class Ahorcado:
 
     def validar_letra_repetida(self, letra:str)->bool:
         '''validar letra repetida'''
-        if not (letra in self.resultado) or not (letra in self.letras_erroneas):
+        if (letra in self.resultado) or (letra in self.letras_erroneas):
             return False
         return True
 
